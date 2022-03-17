@@ -2,8 +2,6 @@ package com.example;
 
 import java.util.List;
 
-// Наследуем класс Feline, т.к. все коты принадлежат семейству Кошачьих
-
 public class Cat {
 
     Predator predator;

@@ -10,12 +10,13 @@ public class Lion extends Feline {
 
     Feline feline; // в эту переменную передадим экземпляр класса Feline
     // в конструктор передаем пол льва и объект класса Feline, который будет создан в другом классе - DI
+
     public Lion(String sex, Feline feline) throws Exception {
 
         this.feline=feline; // присваиваем полю класса созданный объект
-        if (sex.equals("Самец")) {
+        if ("Самец".equals(sex)) {
             hasMane = true;
-        } else if (sex.equals("Самка")){
+        } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
             throw new Exception("Используйте допустимые значения пола животного - самец или самка");
