@@ -20,22 +20,23 @@ public class MockTest {
     @Mock
     Feline feline;
 
+    private String expectedSound = "Мяу";
+
     @Test // Проверка, что getFood успешно вызывается у льва
-    public void testGetFood() throws Exception{
+    public void testCallingGetFoodForLion() throws Exception{
         lion.getFood();
         Mockito.verify(lion).getFood();
 
     }
 
     @Test // Проверка, что getKittens успешно вызывается у льва
-    public void testGetKitten() {
+    public void testCallingGetKittenForLion() {
         lion.getKittens();
         Mockito.verify(lion).getKittens();
     }
 
-
     @Test
-    public void testReturnGetKitten() throws Exception {
+    public void testReturnGetKittenForLion() throws Exception {
         Lion lion = new Lion ("Самец", feline);
         lion.getKittens();
         // проверяем, что в рамках метода lion.getKittens() вызвался feline.getKittens()
@@ -43,11 +44,24 @@ public class MockTest {
     }
 
     @Test
-    public void testReturnGetFood() throws Exception{
+    public void testReturnGetFoodForLion() throws Exception{
         Lion lion = new Lion ("Самец", feline);
         lion.getFood();
-        // проверяем, что в рамках метода lion.getFood() вызвался feline.getFood(AnimalKind.PREDATOR)
-        Mockito.verify(feline).getFood(AnimalKind.PREDATOR);
+        // проверяем, что в рамках метода lion.getFood() вызвался feline.getFood("Хищник")
+        Mockito.verify(feline).getFood("Хищник");
+    }
+
+    @Test // Проверка звука, который издает кошка
+    public void testGetSoundForCat (){
+        Cat cat = new Cat (feline);
+        Assert.assertEquals(expectedSound, cat.getSound());
+    }
+
+    @Test // Проверка, что в рамках getFood() для Cat вызывается eatMeat() для Feline
+    public void testGetFoodForCat() throws Exception {
+        Cat cat = new Cat(feline);
+        cat.getFood();
+        Mockito.verify(feline).eatMeat();
     }
 
 }

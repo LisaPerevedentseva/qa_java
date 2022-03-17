@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="6" failures="0" name="com.example.AnimalParamTest" time="0.014" errors="0" skipped="0">
+<testsuite tests="3" failures="0" name="com.example.AnimalParamTest" time="0.017" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -66,10 +66,7 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.example.AnimalParamTest" name="testGetFood[0]" time="0.014"/>
-  <testcase classname="com.example.AnimalParamTest" name="testGetFamily[0]" time="0"/>
+  <testcase classname="com.example.AnimalParamTest" name="testGetFood[0]" time="0.017"/>
   <testcase classname="com.example.AnimalParamTest" name="testGetFood[1]" time="0"/>
-  <testcase classname="com.example.AnimalParamTest" name="testGetFamily[1]" time="0"/>
   <testcase classname="com.example.AnimalParamTest" name="testGetFood[2]" time="0"/>
-  <testcase classname="com.example.AnimalParamTest" name="testGetFamily[2]" time="0"/>
 </testsuite>

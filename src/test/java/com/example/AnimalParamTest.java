@@ -7,30 +7,30 @@ import org.junit.runners.Parameterized;
 
 import java.util.List;
 
-// Параметризованный тест для getFood
+// Здесь лежат тесты для класса Animal, для которых необходима параметризация:
+// Метод getFood для разных видов животных: Травоядное, Хищник, Неизвестное
 
 @RunWith(Parameterized.class)
 public class AnimalParamTest {
 
-     private final AnimalKind animalKind;
+     private final String animalKind;
      private final List<String> expected; // ожидаемый рацион для созданного животного
      private final String textOfException; // ожидаемый текст исключения при создании некорректного животного
-     private final String textAboutFamily; // текст, ожидаемый в getFamily()
 
-     public AnimalParamTest(AnimalKind animalKind, List<String> expected){
+
+     public AnimalParamTest(String animalKind, List<String> expected){
          this.animalKind = animalKind;
          this.expected=expected;
          this.textOfException="Неизвестный вид животного, используйте значение Травоядное или Хищник";
-         this.textAboutFamily = "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
      }
 
 
     @Parameterized.Parameters
      public static Object[][] testGetFoodData (){
         return new Object[][] {
-                {AnimalKind.HERBIVORE, List.of("Трава", "Различные растения")},
-                {AnimalKind.PREDATOR, List.of("Животные", "Птицы", "Рыба")},
-                {AnimalKind.INCORRECT, List.of()}
+                {"Травоядное", List.of("Трава", "Различные растения")},
+                {"Хищник", List.of("Животные", "Птицы", "Рыба")},
+                {"Неизвестно", List.of()}
         };
 
     }
@@ -46,9 +46,5 @@ public class AnimalParamTest {
          }
     }
 
-    @Test
-    public void testGetFamily(){
-         Animal animal = new Animal();
-         Assert.assertEquals(textAboutFamily, animal.getFamily());
-    }
+
 }

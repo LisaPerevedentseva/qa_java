@@ -9,21 +9,15 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+// здесь лежат тесты для класса Cat, для которых не нужны моки и параметризация
+
 public class CatTest {
 
-   List<String> expectedDiet = List.of("Животные", "Птицы", "Рыба"); // ожидаемый рацион для кота
-   String expectedSound = "Мяу";
-
-    @Test // Проверка звука, который издает кошка
-    public void testGetSound (){
-        Cat cat = new Cat ();
-        Assert.assertEquals(expectedSound, cat.getSound());
-    }
+    List<String> expectedDiet = List.of("Животные", "Птицы", "Рыба"); // ожидаемый рацион для кота
+    Cat cat = new Cat (new Feline());
 
      @Test // проверяем, что getFood возвращает корректный рацион для кота
     public void testGetFood() throws Exception{
-        Cat cat = new Cat();
         Assert.assertEquals(expectedDiet, cat.getFood());
      }
 

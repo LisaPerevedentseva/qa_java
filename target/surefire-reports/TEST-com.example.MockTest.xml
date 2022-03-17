@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="com.example.MockTest" time="0.242" errors="0" skipped="0">
+<testsuite tests="6" failures="0" name="com.example.MockTest" time="0.859" errors="0" skipped="0">
   <properties>
     <property name="idea.version" value="2021.3.2"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -66,8 +66,10 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="com.example.MockTest" name="testReturnGetKitten" time="0.226"/>
-  <testcase classname="com.example.MockTest" name="testReturnGetFood" time="0.016"/>
-  <testcase classname="com.example.MockTest" name="testGetFood" time="0"/>
-  <testcase classname="com.example.MockTest" name="testGetKitten" time="0"/>
+  <testcase classname="com.example.MockTest" name="testCallingGetKittenForLion" time="0.841"/>
+  <testcase classname="com.example.MockTest" name="testReturnGetFoodForLion" time="0"/>
+  <testcase classname="com.example.MockTest" name="testGetSoundForCat" time="0"/>
+  <testcase classname="com.example.MockTest" name="testReturnGetKittenForLion" time="0.016"/>
+  <testcase classname="com.example.MockTest" name="testGetFoodForCat" time="0.002"/>
+  <testcase classname="com.example.MockTest" name="testCallingGetFoodForLion" time="0"/>
 </testsuite>

@@ -2,11 +2,10 @@
 package com.example;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.MockitoAnnotations;
-
 import java.util.List;
+
+// Здесь лежат тесты для класса Feline, для которых не нужны моки
 
 public class FelineTest {
 

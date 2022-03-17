@@ -13,7 +13,6 @@ public class Lion extends Feline {
     public Lion(String sex, Feline feline) throws Exception {
 
         this.feline=feline; // присваиваем полю класса созданный объект
-
         if (sex.equals("Самец")) {
             hasMane = true;
         } else if (sex.equals("Самка")){
@@ -32,6 +31,6 @@ public class Lion extends Feline {
     }
 
     public List<String> getFood() throws Exception {
-        return feline.getFood(AnimalKind.PREDATOR);
+        return feline.getFood("Хищник");
     }
 }

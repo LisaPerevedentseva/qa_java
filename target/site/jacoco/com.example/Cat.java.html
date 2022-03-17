@@ -4,14 +4,20 @@ import java.util.List;
 
 // Наследуем класс Feline, т.к. все коты принадлежат семейству Кошачьих
 
-<span class="fc" id="L7">public class Cat extends Feline { // теперь наследуем все методы Feline, Feline в свою очередь наследует Animal и имплементирует Predator</span>
+public class Cat {
+
+    Predator predator;
+
+<span class="fc" id="L11">    public Cat(Feline feline) {</span>
+<span class="fc" id="L12">        this.predator = feline;</span>
+<span class="fc" id="L13">    }</span>
 
     public String getSound() {
-<span class="fc" id="L10">        return &quot;Мяу&quot;;</span>
+<span class="fc" id="L16">        return &quot;Мяу&quot;;</span>
     }
 
     public List&lt;String&gt; getFood() throws Exception {
-<span class="fc" id="L14">        return eatMeat();</span>
+<span class="fc" id="L20">        return predator.eatMeat();</span>
     }
 
 }
