@@ -8,7 +8,7 @@ public class Lion {
 
     // добавляем инъекцию зависимости, чтобы изолировать класс Lion от Feline
 
-    Feline feline; // в эту переменную передадим экземпляр класса Feline
+    private Feline feline; // в эту переменную передадим экземпляр класса Feline
     // в конструктор передаем пол льва и объект класса Feline, который будет создан в другом классе - DI
 
 <span class="fc" id="L14">    public Lion(String sex, Feline feline) throws Exception {</span>
