@@ -15,35 +15,28 @@ public class AnimalParamTest {
 
      private final String animalKind;
      private final List<String> expected; // ожидаемый рацион для созданного животного
-     private final String textOfException; // ожидаемый текст исключения при создании некорректного животного
-
 
      public AnimalParamTest(String animalKind, List<String> expected){
          this.animalKind = animalKind;
          this.expected=expected;
-         this.textOfException="Неизвестный вид животного, используйте значение Травоядное или Хищник";
      }
-
 
     @Parameterized.Parameters
      public static Object[][] testGetFoodData (){
         return new Object[][] {
                 {"Травоядное", List.of("Трава", "Различные растения")},
-                {"Хищник", List.of("Животные", "Птицы", "Рыба")},
-                {"Неизвестно", List.of()}
+                {"Хищник", List.of("Животные", "Птицы", "Рыба")}
         };
 
     }
 
+    // положительный сценарий: определяем раион животного при корректном виде - Травоядное или Хищник
+    // убрала проверку исключений из данного теста
     @Test
     public void testGetFood() throws Exception {
-         try {
          Animal animal = new Animal();
          List<String> actual = animal.getFood(animalKind);
          Assert.assertEquals(expected, actual);
-         } catch (Exception exception) {
-             Assert.assertEquals(textOfException, exception.getMessage());
-         }
     }
 
 

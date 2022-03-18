@@ -20,19 +20,22 @@ public class MockTest {
     @Mock
     Feline feline;
 
-    private String expectedSound = "Мяу";
+    // звук, ожидаемый от кошки
+    final String EXPECTED_SOUND = "Мяу";
+    // ожидаемый текст исключения при создании льва с некорректным полом
+    final String TEXT_OF_EXCEPTION = "Используйте допустимые значения пола животного - самец или самка";
+    // Параметр для передачи в конструктор теста testExceptionInLionConstructor()
+    final String SEX = "Неизвестно";
 
-    @Test // Проверка, что getFood успешно вызывается у льва
-    public void testCallingGetFoodForLion() throws Exception{
-        lion.getFood();
-        Mockito.verify(lion).getFood();
-
-    }
-
-    @Test // Проверка, что getKittens успешно вызывается у льва
-    public void testCallingGetKittenForLion() {
-        lion.getKittens();
-        Mockito.verify(lion).getKittens();
+    // Негативный сценарий для конструктора льва: отработка исключения при некорректном поле
+    @Test
+    public void testExceptionInLionConstructor() {
+        try {
+            Lion lion = new Lion(SEX, feline);
+            Assert.fail("Исключение не отработало");
+        } catch (Exception thrown) {
+            Assert.assertEquals(TEXT_OF_EXCEPTION, thrown.getMessage());
+        }
     }
 
     @Test
@@ -54,7 +57,7 @@ public class MockTest {
     @Test // Проверка звука, который издает кошка
     public void testGetSoundForCat (){
         Cat cat = new Cat (feline);
-        Assert.assertEquals(expectedSound, cat.getSound());
+        Assert.assertEquals(EXPECTED_SOUND, cat.getSound());
     }
 
     @Test // Проверка, что в рамках getFood() для Cat вызывается eatMeat() для Feline

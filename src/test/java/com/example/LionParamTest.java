@@ -14,12 +14,10 @@ public class LionParamTest {
 
     private final String sex;
     private final boolean expected; // ожидаемое значение параметра, определяющего наличие гривы
-    private final String textOfException; // ожидаемый текст исключения при создании льва с некорректным полом
 
     public LionParamTest(String sex, boolean expected){
         this.sex=sex;
         this.expected=expected;
-        this.textOfException = "Используйте допустимые значения пола животного - самец или самка";
     }
 
     @Parameterized.Parameters
@@ -27,33 +25,26 @@ public class LionParamTest {
         return new Object[][] {
                 //Пол    //Наличие гривы
                 {"Самец", true}, // корректный пол
-                {"Самка", false}, // корректный пол
-                {"Оно", false} // некорректный пол
-
+                {"Самка", false} // корректный пол
         };
     }
 
-    @Test // проверяем, что при создании льва у самца есть грива, у самки нет, а если пол неизвестен - срабатывает исключение с соответствующим текстом
+    // положительные сценарии: проверяем, что при создании льва у самца есть грива, у самки нет
+    @Test
     public void testLionConstructor () throws Exception {
-        try { // проверяем два положительных сценария
             Lion lion = new Lion(sex, new Feline());
             boolean actual = lion.hasMane;
             Assert.assertEquals(expected, actual);
-        } catch (Exception exception) { // проверяем наличие и текст исключения в случае, если пол животного некорректный
-            Assert.assertEquals(textOfException, exception.getMessage());
-        }
+
     }
 
-    @Test // проверяем корректность работы метода doesHaveMane
+    // положительные сценарии: проверяем корректность работы метода doesHaveMane при корректном поле
+    @Test
     public void testDoesHaveMane () throws Exception {
-        try {
-            Lion lion = new Lion(sex, new Feline()); // создаем поочередно самца, самку и некорректный пол
+            Lion lion = new Lion(sex, new Feline()); // создаем поочередно самца, самку
             boolean actual = lion.doesHaveMane(); // вызываем проверяемый метод
             Assert.assertEquals(expected, actual);
-        }
-        catch (Exception exception) {
-            Assert.assertEquals(textOfException, exception.getMessage());
-        }
+
     }
 
 
