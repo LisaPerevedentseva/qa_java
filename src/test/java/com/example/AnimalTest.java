@@ -7,9 +7,9 @@ import org.junit.Test;
 
 public class AnimalTest {
 
-   final String INCORRECT_ANIMAL = "Неизвестно";
-   final String EXPECTED_TEXT_FOR_FAMILY = "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
-   final String EXPECTED_TEXT_FOR_EXCEPTION="Неизвестный вид животного, используйте значение Травоядное или Хищник";
+   final String incorrectAnimal = "Неизвестно";
+   final String expectedTextForFamily = "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
+   final String expectedTextForException="Неизвестный вид животного, используйте значение Травоядное или Хищник";
 
 
     // Негативный кейс: проверка исключения при попытке получить рацион неизвестного вида животного
@@ -17,17 +17,17 @@ public class AnimalTest {
   public void textExceptionInGetFoodForAnimal() {
       Animal animal = new Animal();
       try {
-          animal.getFood(INCORRECT_ANIMAL);
+          animal.getFood(incorrectAnimal);
           Assert.fail("Исключение не отработало");
 
       } catch (Exception thrown) {
-          Assert.assertEquals(EXPECTED_TEXT_FOR_EXCEPTION, thrown.getMessage());
+          Assert.assertEquals(expectedTextForException, thrown.getMessage());
       }
   }
 
     @Test
     public void testGetFamily(){
         Animal animal = new Animal();
-        Assert.assertEquals(EXPECTED_TEXT_FOR_FAMILY, animal.getFamily());
+        Assert.assertEquals(expectedTextForFamily, animal.getFamily());
     }
 }

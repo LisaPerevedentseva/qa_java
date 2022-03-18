@@ -39,5 +39,4 @@ public class AnimalParamTest {
          Assert.assertEquals(expected, actual);
     }
 
-
 }

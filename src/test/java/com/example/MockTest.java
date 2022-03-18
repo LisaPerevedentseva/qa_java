@@ -20,51 +20,68 @@ public class MockTest {
     @Mock
     Feline feline;
 
+    // Ожидаемые результаты для тестов
+
+    //Ожидаемое количество котят для льва
+    final int expectedKittens = 1;
+
     // звук, ожидаемый от кошки
-    final String EXPECTED_SOUND = "Мяу";
+    final String expectedSound = "Мяу";
+
     // ожидаемый текст исключения при создании льва с некорректным полом
-    final String TEXT_OF_EXCEPTION = "Используйте допустимые значения пола животного - самец или самка";
+    final String textOfException = "Используйте допустимые значения пола животного - самец или самка";
+
     // Параметр для передачи в конструктор теста testExceptionInLionConstructor()
-    final String SEX = "Неизвестно";
+    final String sex = "Неизвестно";
+
+    // Ожидаемый список еды для кота
+    final List<String> expectedEatForCat = List.of("Животные", "Птицы", "Рыба");
+
+    // Ожидаемый список еды для льва
+    final List<String> expectedEatForLion = List.of("Животные", "Птицы", "Рыба");
 
     // Негативный сценарий для конструктора льва: отработка исключения при некорректном поле
     @Test
     public void testExceptionInLionConstructor() {
         try {
-            Lion lion = new Lion(SEX, feline);
+            Lion lion = new Lion(sex, feline);
             Assert.fail("Исключение не отработало");
         } catch (Exception thrown) {
-            Assert.assertEquals(TEXT_OF_EXCEPTION, thrown.getMessage());
+            Assert.assertEquals(textOfException, thrown.getMessage());
         }
     }
 
+
+    // Исправленный тест testReturnGetKittenForLion()
     @Test
     public void testReturnGetKittenForLion() throws Exception {
         Lion lion = new Lion ("Самец", feline);
-        lion.getKittens();
-        // проверяем, что в рамках метода lion.getKittens() вызвался feline.getKittens()
-        Mockito.verify(feline).getKittens();
+        Mockito.when(feline.getKittens()).thenReturn(1);
+        Assert.assertEquals(expectedKittens,lion.getKittens());
     }
 
+
+   // Исправленный тест testReturnGetFoodForLion()
     @Test
     public void testReturnGetFoodForLion() throws Exception{
         Lion lion = new Lion ("Самец", feline);
-        lion.getFood();
-        // проверяем, что в рамках метода lion.getFood() вызвался feline.getFood("Хищник")
-        Mockito.verify(feline).getFood("Хищник");
+        Mockito.when(feline.getFood("Хищник")).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(expectedEatForLion, lion.getFood());
     }
 
     @Test // Проверка звука, который издает кошка
     public void testGetSoundForCat (){
         Cat cat = new Cat (feline);
-        Assert.assertEquals(EXPECTED_SOUND, cat.getSound());
+        Assert.assertEquals(expectedSound, cat.getSound());
     }
 
-    @Test // Проверка, что в рамках getFood() для Cat вызывается eatMeat() для Feline
-    public void testGetFoodForCat() throws Exception {
+
+    // Исправленный тест testGetFoodForCat()
+    @Test
+    public void testGetFoodCat() throws Exception {
         Cat cat = new Cat(feline);
-        cat.getFood();
-        Mockito.verify(feline).eatMeat();
+        Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
+        Assert.assertEquals(expectedEatForCat, cat.getFood());
     }
 
 }
