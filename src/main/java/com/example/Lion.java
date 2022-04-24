@@ -6,21 +6,26 @@ public class Lion {
 
     boolean hasMane;
 
-    public Lion(String sex) throws Exception {
+    // добавляем инъекцию зависимости, чтобы изолировать класс Lion от Feline
+
+    private Feline feline; // в эту переменную передадим экземпляр класса Feline
+    // в конструктор передаем пол льва и объект класса Feline, который будет создан в другом классе - DI
+
+    public Lion(String sex, Feline feline) throws Exception {
+
+        this.feline=feline; // присваиваем полю класса созданный объект
         if ("Самец".equals(sex)) {
             hasMane = true;
         } else if ("Самка".equals(sex)) {
             hasMane = false;
         } else {
-            throw new Exception("Используйте допустимые значения пола животного - самей или самка");
+            throw new Exception("Используйте допустимые значения пола животного - самец или самка");
         }
     }
 
-    Feline feline = new Feline();
-
-    public int getKittens() {
+     public int getKittens() {
         return feline.getKittens();
-    }
+     }
 
     public boolean doesHaveMane() {
         return hasMane;
